@@ -1,0 +1,61 @@
+<h2>プロフィールを編集</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :ニックネーム %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+  <br>
+  <div class="field">
+    <label>
+    <%= f.radio_button :gender, "m" %> 男 </label>
+    <label><%= f.radio_button :gender, "f" %> 女</label>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :アイコン %><br />
+    <%= f.file_field :icon_name, autocomplete: "img" %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :自己紹介 %><br />
+    <%= f.text_area :profile,autocomplete: "email" %>
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :活動エリア %><br />
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: '選択して下さい' %>  </div>
+  <br>
+  <div class="field">
+    <%= f.label :生年月日 %><br />
+    <%= f.date_field( :birthday,　default: Date.new(1989, 1, 1)) %>
+    <!--<%= f.date_field :birthday,　value: "#{Date.new(2000,1,1)}" %>-->
+  </div>
+  <br>
+  <div class="field">
+    <%= f.label :好きなスポーツ %><br />
+    <%= f.text_field :favor %>
+  </div>
+  <br>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
