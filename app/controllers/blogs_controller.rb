@@ -3,7 +3,8 @@ class BlogsController < ApplicationController
   
   def show
     @blog = Blog.find(params[:id])
-    @user = User.find(@blog.user_id)
+    @user = @blog.user
+    @likes_count = Like.where(blog_id: @blog.id).count
   end
 
   def index
@@ -33,10 +34,11 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @user = User.find(@blog.user_id)
     if @blog.user_id == current_user.id
-      @blog.update(params.require(:blog).permit(:content, :title, :blog_published))
+      @blog.update(blogs_params)
+      redirect_to blogs_path
     else
-      redirect_to "/blogs"
       flash[:alert] = "無効なユーザー"
+      render "blogs/edit"
     end
   end
 
@@ -50,4 +52,12 @@ class BlogsController < ApplicationController
       flash[:alert] = "無効なユーザー"
     end
   end
+  
+  private
+    def blogs_params
+      params.require(:blog).permit(:content, :title, :blog_published)
+    end
+  
+  
+  
 end

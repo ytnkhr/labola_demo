@@ -1,4 +1,4 @@
-<h1><%= @user.name %>さんのプロフィール</h1>
+<h1><%= @user.name %>のプロフィール</h1>
 <a href="/users/edit" class="edit-btn"><i class="fa fa-edit"></i>変更</a>
 
 
@@ -21,7 +21,7 @@
   
   <tr>
     <th>性別</th>
-    <td><%= @user.gender %></td>
+    <td><%= Global::GENDER[@user.gender] %></td>
   </tr>
   
   <tr>
