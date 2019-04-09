@@ -2,7 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -20,10 +20,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
-
+ def update
+    super
+    # if user.id == current_user.id
+    @user = User.find(current_user.id)
+    # @user.genre = params[:user][:genre]
+    # @user.area = params[:user][:area]
+    # @user.profile = params[:user][:profile]
+    # @user.gender = params[:user][:gender]
+    # @user.waiting = params[:user][:waiting]
+    # @user.part = params[:user][:part]
+    
+    if params[:user][:icon]
+      @user.icon = "#{@user.id}.jpg"
+      image = params[:user][:icon]
+      File.binwrite("public/user_icon/#{@user.icon}", image.read)
+      @user.save
+    end
+ end
+  
   # DELETE /resource
   # def destroy
   #   super
@@ -46,9 +61,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :name, :gender, :profile, :favor, :email, :password, :icon_name, :prefecture_id, :birthday, :birth_published])
+  end
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)

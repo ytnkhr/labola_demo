@@ -1,0 +1,8 @@
+<h1>投稿一覧</h1>
+<hr>
+<% @blogs.each do |p| %>
+  <h3><a href="/blogs/<%= p.id %>"><%= p.title %></a></h3>
+  <p><a href="/users/<%= p.user_id %>"><%= User.find(p.user_id).name %></a>|<%= User.find(p.user_id).created_at %></p>
+  <hr>
+<% end %>
+<a href="/blogs/new" class="btn btn-primary">新しく投稿する</a>

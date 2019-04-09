@@ -1,0 +1,47 @@
+<h1><%= @user.name %>さんのプロフィール</h1>
+<a href="/users/edit" class="edit-btn"><i class="fa fa-edit"></i>変更</a>
+
+
+<table id="line-table" class="profile">
+  
+  <tr>
+    <th>活動エリア</th>
+    <td>
+        <%= @user.prefecture.name if @user.prefecture_id? %>
+    </td>
+  </tr>
+  
+  <tr>
+    <th>チーム</th>
+    <td>
+        <!--<div class="team"><a href="/team/8000000000006441"><img class="lazy" data-original="/labostatic/img/dummy/team.png" src="/labostatic/img/space.gif" style="width:20px;height:20px;">チーム侍</a></div>-->
+        <!--<div class="team"><a href="/team/8000000000006442"><img class="lazy" data-original="/labostatic/img/dummy/team.png" src="/labostatic/img/space.gif" style="width:20px;height:20px;">team 侍</a></div>-->
+    </td>
+  </tr>
+  
+  <tr>
+    <th>性別</th>
+    <td><%= @user.gender %></td>
+  </tr>
+  
+  <tr>
+    <th>年齢</th>
+    <td><%= @user.age %></td>
+  </tr>
+  
+  <tr>
+    <th>生年月日</th>
+    <td><%= @user.birthday.strftime("%Y年%m月%d日") %></td>
+  </tr>
+  
+  <tr>
+    <th>スポーツ</th>
+    <td><%= @user.favor %></td>
+  </tr>
+  
+  <tr>
+    <th>LaBOLA登録日</th>
+    <td><%= @user.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+  </tr>
+
+</table>

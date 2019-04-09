@@ -1,0 +1,14 @@
+<h1>ブログを投稿する</h1>
+<hr>
+<%= form_for @blog do |f| %>
+  <p>タイトル（必須）</p>
+  <%= f.text_field :title, :class => "form-control my-form" %>
+  <br>
+  <p>本文（必須）</p>
+  <%= f.text_area :content, :class => "form-control my-form" %>
+  <br>
+  <p>公開設定</p>
+    <%= f.select :blog_published, {"公開" => "p", "会員公開" => "m", "友達公開" => "f", "非公開" => "c"} %>
+  <hr>
+  <%= f.submit "ブログを投稿する", :class => "btn btn-primary" %>
+<% end %>

@@ -4,4 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :prefecture, optional: true
+  
+  # validates :name, {presence: true}
+  def age
+  date_format = "%Y%m%d"
+  (Date.today.strftime(date_format).to_i - birthday.strftime(date_format).to_i) / 10000
+  end
 end
