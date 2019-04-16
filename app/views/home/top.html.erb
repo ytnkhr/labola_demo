@@ -3,18 +3,16 @@
 <br>
 <div id="content" class="w-normal clearfix">
   
-  <div id="main">
-    <div id="left">
+  <div id="container">
+    <div id="row">
+    <div id="left" class="col-lg-2">
     <section>
-      <h2 class="page-title"><%= fa_icon 'home' %>スポーツ一覧</h2>
+      <h4 class="page-title"><%= fa_icon 'home' %>スポーツ一覧</h4>
       <div id="more-text">
         <div class="text" style="max-height:296px;">
           <ul class="text-count description">
-          
             <li><a href="/soccer">サッカー</a></li>
-          
             <li><a href="/futsal">フットサル</a></li>
-          
             <li><a href="/baseball">野球</a></li>
           
             <li><a href="/softball">ソフトボール</a></li>
@@ -109,37 +107,72 @@
     
           </ul>
         </div>
-        <a href="javascript:;" id="more-btn" class="open">もっと見る</a>
+  <div id="more_btn">もっと見る <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+        <script>
+      //liの個数を取得
+      var listContents = $("#more-text li").length;
+      $("#more-text").each(function(){
+
+      //最初に表示させるアイテムの数
+      var Num = 6,
+          gtNum = Num-1;
+
+      //最初はmoreボタン表示にし、
+      $(this).find('#more_btn').show();
+      $(this).find('#close_btn').hide();
+      //10行目まで表示
+      $(this).find("li:not(:lt("+Num+"))").hide();
+
+      //moreボタンがクリックされた時
+      $('#more_btn').click(function(){
+
+         //Numに+3ずつしていく = 3行ずつ追加する
+          Num +=$("#more-text li").length;
+          $(this).parent().find("li:lt("+Num+")").slideDown();
+          //liの個数よりNumが多い時、
+          if(listContents <= Num){
+              $('#more_btn').hide();
+
+              //「閉じる」がクリックされたら、
+              $('#close_btn').click(function(){
+                $(this).parent().find("li:gt("+gtNum+")").slideUp();//11行目以降は非表示にし、
+                $(this).hide();//閉じるボタンを非表示
+                $('#more_btn').show();//moreボタン表示に
+              });
+          }
+      });
+  });
+</script>
       </div>
     </section>
     </div>
-    <div id="center">
+    <div id="center" class="col-lg-8">
     <section>
-      <h2><i class="size20 recruit">Recruit</i>募集情報</h2>
+      <h4><%= fa_icon 'user-plus' %></i>募集情報</h4>
       <ul class="simple-list">
         
           <li class="">
-      <h3 class="title"><a href="/recruits/8000000000110500">4月16日(火)18:30～21:05@2.5h 北区内体育館 ¥1000 ガチ＆ゆるミックス エンジョイMIXチーム 結成8年目！毎週活動しています☆</a><span class="new">NEW</span></h3>
+      <h4 class="title"><a href="/recruits/8000000000110500">4月16日(火)18:30～21:05@2.5h 北区内体育館 ¥1000 ガチ＆ゆるミックス エンジョイMIXチーム 結成8年目！毎週活動しています☆</a><span class="new">NEW</span></h4>
       <div class="sub">ユニクス WACHU<span class="vote">評価 +544.8</span><span>｜</span>フットサルの個人参加<span>｜</span>応募期限 2019/04/16 18:30<span>｜</span>東京</div>
     </li>
         
           <li class="">
-      <h3 class="title"><a href="/recruits/8000000000110304">▼3/30(土)19-21(2h)新宿区西戸山公園(人工芝)◎競技系サッカーチーム1チーム￥8850/2h</a><span class="new">NEW</span></h3>
+      <h4 class="title"><a href="/recruits/8000000000110304">▼3/30(土)19-21(2h)新宿区西戸山公園(人工芝)◎競技系サッカーチーム1チーム￥8850/2h</a><span class="new">NEW</span></h4>
       <div class="sub">dokaben<span class="vote">評価 +302</span><span>｜</span>サッカーの対戦相手<span>｜</span>応募期限 2019/03/30 19:00<span>｜</span>東京</div>
     </li>
         
           <li class="">
-      <h3 class="title"><a href="/recruits/8000000000111504">▼3/21(祝･木)13-15(2h)渋谷区代々木公園サッカー場(クレー)◎エンジョイ系サッカー個人参加￥500</a><span class="new">NEW</span></h3>
+      <h4 class="title"><a href="/recruits/8000000000111504">▼3/21(祝･木)13-15(2h)渋谷区代々木公園サッカー場(クレー)◎エンジョイ系サッカー個人参加￥500</a><span class="new">NEW</span></h4>
       <div class="sub">dokaben<span class="vote">評価 +302</span><span>｜</span>サッカーの個人参加<span>｜</span>応募期限 2019/03/21 13:00<span>｜</span>東京</div>
     </li>
         
           <li class="">
-      <h3 class="title"><a href="/recruits/8000000000110504">4月4日(木)21:00～23:00@王子駅徒歩1分 キャプテン翼スタジアム【チーム参加募集】ミックスorメンズのみでも対戦可☆エンジョイ男女MIXチームです♪</a><span class="new">NEW</span></h3>
+      <h4 class="title"><a href="/recruits/8000000000110504">4月4日(木)21:00～23:00@王子駅徒歩1分 キャプテン翼スタジアム【チーム参加募集】ミックスorメンズのみでも対戦可☆エンジョイ男女MIXチームです♪</a><span class="new">NEW</span></h4>
       <div class="sub">ユニクス WACHU<span class="vote">評価 +544.8</span><span>｜</span>フットサルの対戦相手<span>｜</span>応募期限 2019/04/04 21:01<span>｜</span>東京</div>
     </li>
         
           <li class="">
-      <h3 class="title"><a href="/recruits/8000000000111512">▼3/31(日)18:30-21:30(3h)新宿区西早稲田中学校(クレー)◎競技系サッカーチーム￥7500</a><span class="new">NEW</span></h3>
+      <h4 class="title"><a href="/recruits/8000000000111512">▼3/31(日)18:30-21:30(3h)新宿区西早稲田中学校(クレー)◎競技系サッカーチーム￥7500</a><span class="new">NEW</span></h4>
       <div class="sub">dokaben<span class="vote">評価 +302</span><span>｜</span>サッカーの対戦相手<span>｜</span>応募期限 2019/03/31 18:30<span>｜</span>東京</div>
     </li>
         
@@ -148,11 +181,11 @@
     </section>
 
     <section>
-      <h2><%= fa_icon 'home' %>Blog</i>新着ブログ</h2>
+      <h4><%= fa_icon 'home' %>Blog</i>新着ブログ</h4>
       <ul class="photo-list min">
         <li class="blog">
           <div class="text">
-            <h3 class="title"><a href="/blog/user/71537/9000000000020860">長いオフを乗り越えて遠征スタート</a></h3>
+            <h4 class="title"><a href="/blog/user/71537/9000000000020860">長いオフを乗り越えて遠征スタート</a></h4>
             <div class="sub"><a href="/user/71537">Mr.black</a><span>｜</span>2019/03/19 13:30</div>
           </div>
           
@@ -163,7 +196,7 @@
         </li>
         <li class="blog">
           <div class="text">
-            <h3 class="title"><a href="/blog/user/126674/9000000000020859">若干...のバランスが重要...苦笑</a></h3>
+            <h4 class="title"><a href="/blog/user/126674/9000000000020859">若干...のバランスが重要...苦笑</a></h4>
             <div class="sub"><a href="/user/126674">Nice Birdie!!</a><span>｜</span>2019/03/19 10:00</div>
           </div>
           
@@ -175,7 +208,7 @@
     
         <li class="blog">
           <div class="text">
-            <h3 class="title"><a href="/blog/user/60119/9000000000020858">天才までの距離</a></h3>
+            <h4 class="title"><a href="/blog/user/60119/9000000000020858">天才までの距離</a></h4>
             <div class="sub"><a href="/user/60119">まこと＠最年長ジョッパー</a><span>｜</span>2019/03/19 06:41<span>｜</span><i class="size14 like">Like</i>1</div>
           </div>
           
@@ -187,7 +220,7 @@
     
         <li class="blog">
           <div class="text">
-            <h3 class="title"><a href="/blog/user/230929/9000000000020857">オープン戦</a></h3>
+            <h4 class="title"><a href="/blog/user/230929/9000000000020857">オープン戦</a></h4>
             <div class="sub"><a href="/user/230929">SAE23</a><span>｜</span>2019/03/18 22:52<span>｜</span><i class="size14 like">Like</i>3</div>
           </div>
           
@@ -199,7 +232,7 @@
     
         <li class="blog">
           <div class="text">
-            <h3 class="title"><a href="/blog/user/331832/9000000000020856">ピックアップアクティブサッカープレイヤー　No.31</a></h3>
+            <h4 class="title"><a href="/blog/user/331832/9000000000020856">ピックアップアクティブサッカープレイヤー　No.31</a></h4>
             <div class="sub"><a href="/user/331832">K</a><span>｜</span>2019/03/18 22:51<span>｜</span><i class="size14 like">Like</i>2</div>
           </div>
           
@@ -211,60 +244,12 @@
     
         <li class="blog">
           <div class="text">
-            <h3 class="title"><a href="/blog/user/164352/9000000000020855">一足早い春休み</a></h3>
+            <h4 class="title"><a href="/blog/user/164352/9000000000020855">一足早い春休み</a></h4>
             <div class="sub"><a href="/user/164352">ママちゃん</a><span>｜</span>2019/03/18 21:12<span>｜</span><a href="/blog/user/164352/9000000000020855#comments_wrapper"><i class="size14 comment">Comment</i></a>1<span>｜</span><i class="size14 like">Like</i>5</div>
           </div>
           
             <div class="pict" style="width:48px;">
               <!--<img data-original="https://labola-prod.s3.amazonaws.com/p_blog_hv/ub/rz/ba/gq/fq/sn/ai/wq/fd/6h/cz/zj/in/c4/w7_thumb2.jpeg?Signature=eMkNnQJg1036K27DqWOiGHt6qb8%3D&amp;Expires=1553057347&amp;AWSAccessKeyId=ASIASQEMX2HXHVOFKXIJ&amp;x-amz-security-token=FQoGZXIvYXdzEKb//////////wEaDFvZJsDz5X4kRnUcSiLBA4zO7ayByUCJE%2B6nRq2rKaPH1ItBwNMg2SmTpmSK7Y4lpFu9h31qNd%2B78AuyoR7hArifLC2IMKTrdRq3WZhrxWQ8AT31mf/xU5IvnyWcEt6Kzq7U3iSUvSaFHIn4eqKF2u2qZdZrY0yDD9oJJT8MtYB3YXey83i9BtpbxUERGPEyaSOUt62fgtEleoyX3/zeq8n0M8Qe/1dh%2BeVMa224rWpbhsrnfJSpzazVbxlosqLOoJkDs6xARF%2B9G%2Bq3TsUQOG79ojHH5HKu4sj82CcPncaIU7D8qpKQFnAZOvBTg9tmNKl0OwqfS8s5b5om1osFSF/XRHEYYiVkCgMG%2BDVsqTr28w7LG46EqxtoOXtpHao0ceAeBgszcgu8QkJJbfQuECR%2BRqbVLg3PvcV5zqI6aAzYYauhLjVnVpo1PrBk576Qo6Qrt4v3T6LEZtoRgGpCScYCSaoPBP59%2BPceBzSAbdFF86gcebjZ50HXgZQZP6q9kDT51TUaBIN2CdgtmdfEZip5WF5MG5W6UA0L0fyAfru35%2BUSRmG2/rLxkLcBEYrgtOrFAyRQyUQsqS7n1K/7uu/l9Na9Rs/ko2gTC4YJ/I1KKMzdweQF&amp;0" src="/labostatic/img/space.gif" style="width:48px;height:48px;" alt="一足早い春休みの写真" class="profile_picture lazy" />-->
-            </div>
-          
-        </li>
-    
-        <li class="blog">
-          <div class="text">
-            <h3 class="title"><a href="/blog/user/314653/9000000000020854">2019年 3月17日 VS楽笑</a></h3>
-            <div class="sub"><a href="/user/314653">BLUEJAYS</a><span>｜</span>2019/03/18 20:57</div>
-          </div>
-          
-            <div class="pict" style="width:48px;">
-              <!--<img data-original="https://labola-prod.s3.amazonaws.com/p_blog_ij/ou/mk/ge/25/cs/yd/7a/ww/wy/la/no/aw/h2/jg/z7_thumb2.jpeg?Signature=0Ei46fXwJRzOfYbsO9cm0sR9Krw%3D&amp;Expires=1553057347&amp;AWSAccessKeyId=ASIASQEMX2HXHVOFKXIJ&amp;x-amz-security-token=FQoGZXIvYXdzEKb//////////wEaDFvZJsDz5X4kRnUcSiLBA4zO7ayByUCJE%2B6nRq2rKaPH1ItBwNMg2SmTpmSK7Y4lpFu9h31qNd%2B78AuyoR7hArifLC2IMKTrdRq3WZhrxWQ8AT31mf/xU5IvnyWcEt6Kzq7U3iSUvSaFHIn4eqKF2u2qZdZrY0yDD9oJJT8MtYB3YXey83i9BtpbxUERGPEyaSOUt62fgtEleoyX3/zeq8n0M8Qe/1dh%2BeVMa224rWpbhsrnfJSpzazVbxlosqLOoJkDs6xARF%2B9G%2Bq3TsUQOG79ojHH5HKu4sj82CcPncaIU7D8qpKQFnAZOvBTg9tmNKl0OwqfS8s5b5om1osFSF/XRHEYYiVkCgMG%2BDVsqTr28w7LG46EqxtoOXtpHao0ceAeBgszcgu8QkJJbfQuECR%2BRqbVLg3PvcV5zqI6aAzYYauhLjVnVpo1PrBk576Qo6Qrt4v3T6LEZtoRgGpCScYCSaoPBP59%2BPceBzSAbdFF86gcebjZ50HXgZQZP6q9kDT51TUaBIN2CdgtmdfEZip5WF5MG5W6UA0L0fyAfru35%2BUSRmG2/rLxkLcBEYrgtOrFAyRQyUQsqS7n1K/7uu/l9Na9Rs/ko2gTC4YJ/I1KKMzdweQF&amp;0" src="/labostatic/img/space.gif" style="width:48px;height:48px;" alt="2019年 3月17日 VS楽笑の写真" class="profile_picture lazy" />-->
-            </div>
-          
-        </li>
-    
-        <li class="blog">
-          <div class="text">
-            <h3 class="title"><a href="/blog/user/260527/9000000000020853">花見</a></h3>
-            <div class="sub"><a href="/user/260527">AOIフットサル</a><span>｜</span>2019/03/18 19:31<span>｜</span><i class="size14 like">Like</i>1</div>
-          </div>
-          
-            <div class="pict" style="width:48px;">
-              
-            </div>
-          
-        </li>
-    
-        <li class="blog">
-          <div class="text">
-            <h3 class="title"><a href="/blog/user/60119/9000000000020852">鯉の動きが活発化(^^♪</a></h3>
-            <div class="sub"><a href="/user/60119">まこと＠最年長ジョッパー</a><span>｜</span>2019/03/18 17:42<span>｜</span><i class="size14 like">Like</i>1</div>
-          </div>
-          
-            <div class="pict" style="width:48px;">
-              <!--<img data-original="https://labola-prod.s3.amazonaws.com/p_blog_vd/jd/vp/ok/je/rr/mn/e6/in/ac/oq/kr/vo/rt/5n/a6_thumb2.jpeg?Signature=oD4B3mzMPeI1wY%2FDJfhsiHe9wUk%3D&amp;Expires=1553057347&amp;AWSAccessKeyId=ASIASQEMX2HXHVOFKXIJ&amp;x-amz-security-token=FQoGZXIvYXdzEKb//////////wEaDFvZJsDz5X4kRnUcSiLBA4zO7ayByUCJE%2B6nRq2rKaPH1ItBwNMg2SmTpmSK7Y4lpFu9h31qNd%2B78AuyoR7hArifLC2IMKTrdRq3WZhrxWQ8AT31mf/xU5IvnyWcEt6Kzq7U3iSUvSaFHIn4eqKF2u2qZdZrY0yDD9oJJT8MtYB3YXey83i9BtpbxUERGPEyaSOUt62fgtEleoyX3/zeq8n0M8Qe/1dh%2BeVMa224rWpbhsrnfJSpzazVbxlosqLOoJkDs6xARF%2B9G%2Bq3TsUQOG79ojHH5HKu4sj82CcPncaIU7D8qpKQFnAZOvBTg9tmNKl0OwqfS8s5b5om1osFSF/XRHEYYiVkCgMG%2BDVsqTr28w7LG46EqxtoOXtpHao0ceAeBgszcgu8QkJJbfQuECR%2BRqbVLg3PvcV5zqI6aAzYYauhLjVnVpo1PrBk576Qo6Qrt4v3T6LEZtoRgGpCScYCSaoPBP59%2BPceBzSAbdFF86gcebjZ50HXgZQZP6q9kDT51TUaBIN2CdgtmdfEZip5WF5MG5W6UA0L0fyAfru35%2BUSRmG2/rLxkLcBEYrgtOrFAyRQyUQsqS7n1K/7uu/l9Na9Rs/ko2gTC4YJ/I1KKMzdweQF&amp;0" src="/labostatic/img/space.gif" style="width:48px;height:48px;" alt="鯉の動きが活発化(^^♪の写真" class="profile_picture lazy" />-->
-            </div>
-          
-        </li>
-        
-        <li class="blog">
-          <div class="text">
-            <h3 class="title"><a href="/blog/user/112814/9000000000020850">2019.3.18</a></h3>
-            <div class="sub"><a href="/user/112814">田代主水</a><span>｜</span>2019/03/18 16:56<span>｜</span><i class="size14 like">Like</i>6</div>
-          </div>
-          
-            <div class="pict" style="width:48px;">
-              <!--<img data-original="https://labola-prod.s3.amazonaws.com/p_blog_yu/yw/nn/f6/76/wc/jl/ng/2w/bh/c7/id/7l/3e/zx/77_thumb2.jpeg?Signature=4y8WsbvfHk5%2FJzABNpFsZ%2F3joJg%3D&amp;Expires=1553057347&amp;AWSAccessKeyId=ASIASQEMX2HXHVOFKXIJ&amp;x-amz-security-token=FQoGZXIvYXdzEKb//////////wEaDFvZJsDz5X4kRnUcSiLBA4zO7ayByUCJE%2B6nRq2rKaPH1ItBwNMg2SmTpmSK7Y4lpFu9h31qNd%2B78AuyoR7hArifLC2IMKTrdRq3WZhrxWQ8AT31mf/xU5IvnyWcEt6Kzq7U3iSUvSaFHIn4eqKF2u2qZdZrY0yDD9oJJT8MtYB3YXey83i9BtpbxUERGPEyaSOUt62fgtEleoyX3/zeq8n0M8Qe/1dh%2BeVMa224rWpbhsrnfJSpzazVbxlosqLOoJkDs6xARF%2B9G%2Bq3TsUQOG79ojHH5HKu4sj82CcPncaIU7D8qpKQFnAZOvBTg9tmNKl0OwqfS8s5b5om1osFSF/XRHEYYiVkCgMG%2BDVsqTr28w7LG46EqxtoOXtpHao0ceAeBgszcgu8QkJJbfQuECR%2BRqbVLg3PvcV5zqI6aAzYYauhLjVnVpo1PrBk576Qo6Qrt4v3T6LEZtoRgGpCScYCSaoPBP59%2BPceBzSAbdFF86gcebjZ50HXgZQZP6q9kDT51TUaBIN2CdgtmdfEZip5WF5MG5W6UA0L0fyAfru35%2BUSRmG2/rLxkLcBEYrgtOrFAyRQyUQsqS7n1K/7uu/l9Na9Rs/ko2gTC4YJ/I1KKMzdweQF&amp;0" src="/labostatic/img/space.gif" style="width:48px;height:48px;" alt="2019.3.18の写真" class="profile_picture lazy" />-->
             </div>
           
         </li>
@@ -274,7 +259,7 @@
     </section>
 
     <section>
-      <h2><i class="size20 list">list</i>コンテンツ</h2>
+      <h4><%= fa_icon 'list' %>コンテンツ</h4>
       <ul id="contents-list">
         <li>
           <div class="sports">サッカー</div>
@@ -315,32 +300,25 @@
       </ul>
       <a href="/sports" class="more-open">その他のスポーツを見る</a>
     </section>
-
     </div>
       
-</div>
-
-    <aside id="side">
-    <section>
-      <h4><i class="size20 recruit"></i>募集情報</h4>
-      <ul class="text-link">
-          <li><a href="/recruits/soccer">サッカーの募集情報</a></li>
-          <li><a href="/recruits/futsal">フットサルの募集情報</a></li>
-          <li><a href="/recruits/baseball">野球の募集情報</a></li>
-          <li><a href="/recruits/golf">ゴルフの募集情報</a></li>
-          <li><a href="/recruits/tennis">テニスの募集情報</a></li>
-      </ul>
-    </section>
-    </aside>
-  
-</div>
-
-  <div id="push"></div>
-</div>
+    <div id="right" class="col-lg-2">
+      <section>
+        <h4><%= fa_icon 'user-plus' %>募集情報</h4>
+        <ul class="text-link">
+            <li><a href="/recruits/soccer">サッカーの募集情報</a></li>
+            <li><a href="/recruits/futsal">フットサルの募集情報</a></li>
+            <li><a href="/recruits/baseball">野球の募集情報</a></li>
+            <li><a href="/recruits/golf">ゴルフの募集情報</a></li>
+            <li><a href="/recruits/tennis">テニスの募集情報</a></li>
+        </ul>
+      </section>
+    </div>
+    </div>
+  </div>
 
 <footer>
-  
-  <div id="footer-list">
+  <div id="footer-list" class="col-lg-12">
     <div class="w-normal clearfix dl5">
       <dl>
         <dt>SPORTS</dt>
@@ -396,5 +374,5 @@
     </div>
   </div>
   
-  <div id="copy"><div class="w-normal">(C) 2017 LUXEYS, LTD. All Rights Reserved.</div></div>
+
 </footer>

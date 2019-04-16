@@ -2,7 +2,7 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!, :only => [:new, :create, :edit, :update, :destroy]
   
   def show
-    @blog = Blog.find(params[:id])
+    @blog = Blog.find_by(id: params[:id])
     @user = @blog.user
     @likes_count = Like.where(blog_id: @blog.id).count
   end
