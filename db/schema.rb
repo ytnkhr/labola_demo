@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190409064700) do
+ActiveRecord::Schema.define(version: 20190517012525) do
 
   create_table "blogs", force: :cascade do |t|
     t.string   "title"
@@ -28,10 +28,76 @@ ActiveRecord::Schema.define(version: 20190409064700) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "prefectures", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "recruits", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "content"
+    t.date     "hold_on"
+    t.date     "deadline"
+    t.string   "erea"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "recruit_type"
+    t.string   "place"
+    t.integer  "capacity"
+    t.integer  "team_id"
+    t.integer  "cost"
+    t.string   "start_level"
+    t.integer  "start_age"
+    t.integer  "end_age"
+    t.string   "tag_name"
+    t.string   "image_name"
+    t.time     "hold_start"
+    t.time     "hold_end"
+    t.time     "dead_end"
+    t.string   "end_level"
+    t.integer  "prefecture_id"
+    t.integer  "sport_id"
+    t.index ["prefecture_id"], name: "index_recruits_on_prefecture_id"
+  end
+
+  create_table "sports", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "category"
+  end
+
+  create_table "team_entries", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.string   "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "prefecture_id"
+    t.string   "area"
+    t.string   "sport_id"
+    t.string   "start_level"
+    t.string   "end_level"
+    t.string   "start_age"
+    t.string   "end_age"
+    t.text     "introduction"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|

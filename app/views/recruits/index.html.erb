@@ -1,0 +1,86 @@
+<div id="content" class="w-normal clearfix">
+  
+  <div id="container">
+    <div id="row">
+    <div id="left" class="col-lg-2">
+    <section>
+      <h4 class="page-title"><%= fa_icon 'home' %>競技から探す</h4>
+      <div id="more-text">
+        <div class="text" style="max-height:296px;">
+          <ul class="text-count description">
+            <li><a href="/soccer">サッカー</a></li>
+            <li><a href="/futsal">フットサル</a></li>
+            <li><a href="/baseball">野球</a></li>
+
+          </ul>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <div id="center" class="col-lg-7">
+    <section style="position:relative;">
+  
+    <h4 class="hide_old">募集情報を探す</h4> 
+    <div id="recruit_simple_search">
+      <form action="/recruits/url/search" id="form-new-search-box-basic" class="basic_search" method="get" >
+ 
+  <ul class="tables">
+    <li class="selector">
+      <input id="input_order" type="hidden" name="order" value=""  />
+      <div class="in_table">
+        <div class="tr">
+          <div class="tit">競技</div>
+          <div class="selects">すべての競技</div>
+        </div>
+
+        <div class="tr">
+          <div class="tit">募集の種類</div>
+          <div class="selects">すべての種類</div>
+        </div>
+        
+        <div class="tr">
+          <div class="tit">開催エリア</div>
+          <div class="selects">すべてのエリア</div>
+        </div>
+        
+      </div>
+    </li>
+    <li class="btns">
+      <input type="submit" class="btn" value="この条件で検索">
+      <%= fa_icon 'plus' %>詳細検索</a>
+    </li>
+  </ul>
+  
+      </div>
+    
+  
+</section>
+
+    <h4>募集情報一覧</h4>
+
+  <ul class="recruit-list">
+    <% @recruits.each do |p| %>
+
+    <li class="recruit ">
+
+      <h4><a href="/recruits/<%= p.id %>"><%= p.title %></a></h4>
+      <div class="author"><a href="/users/<%= p.user_id %>"><%= User.find(p.user_id).name %></a>|<%= User.find(p.user_id).created_at %></div>
+    <ol class="sub">
+      
+        <li>開催日：<%= p.hold_on %></li>
+      
+    </ol>
+    </li>
+    <% end %>
+    
+    </section>
+    </div>
+    
+    <div id="right" class="col-lg-3">
+      <section>
+    
+        <a href="/recruits/new" class="btn red medium">募集情報を作成する</a>
+
+      </section>
+    </div>

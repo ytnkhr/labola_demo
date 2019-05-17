@@ -1,0 +1,17 @@
+
+  <h1>募集情報</h1>
+  <hr>
+  <h4><%= @recruit.title %></h4>
+  <br>
+  <p><%= @user.name %>|<%= @recruit.created_at %></p>
+  <br>
+  <h4><%= @recruit.content %></h4>
+  <br>
+  <hr>
+  <p><a href="/recruits" class="btn btn-info">トップに戻る</a></p>
+  <% if user_signed_in? %>
+    <% if @recruit.user_id == current_user.id %>
+      <p><a href="/recruits/<%= @recruit.id %>/edit" class="btn btn-success">募集情報を編集する</a></p>
+      <p><a href="/recruits/<%= @recruit.id %>" data-method="delete" class="btn btn-danger">募集情報を削除する</a></p>
+    <% end %>
+  <% end %>

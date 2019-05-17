@@ -1,0 +1,98 @@
+  <div id="content" class="w-normal clearfix">
+  
+    <section id="post" class="recruit">
+
+    <h1><%= fa_icon 'edit' %>募集情報を編集する</h1>
+
+    <%= form_for @recruit do |f| %>
+      <table>
+      <tbody>
+        <tr>
+          <th>競技</th>
+          <td><%= f.collection_select :sport_id, Sport.all, :id, :name, include_blank: '選択して下さい' %></td>
+        </tr>
+        <tr>
+          <th>募集の種類</th>
+          <td><%= f.select :recruit_type, recruit_type_list %></td>
+        </tr>
+        <tr>
+          <th>タイトル</th>
+          <td class ="w100"><%= f.text_field :title , :placeholder => "タイトル 100文字以内", :class => "wide_input" %></td>
+        </tr>
+        <tr>
+          <th>本文</th>
+          <td class ="w100"><%= f.text_area :content , :rows => "10", :placeholder => "10,000文字以内", :class => "wide_input" %></td>
+        </tr>
+        <tr>
+          <th>開催日</th>
+          <td><%= f.date_field :hold_on , :placeholder => "日付入力・選択", :class => "calendar" %>
+          <%= f.select :hold_start, time_list %><span>〜</span>
+          <%= f.select :hold_end, time_list %>
+          </td>
+        </tr>
+        <tr>
+          <th>募集期限</th>
+          <td><%= f.date_field :deadline , :placeholder => "日付入力・選択", :class => "calendar" %>
+          <%= f.select :dead_end, time_list %>
+          </td>
+        </tr>
+        <tr>
+          <th>開催エリア</th>
+          <td><%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: '選択して下さい' %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td class ="w100"><%= f.text_field :erea, :placeholder => "都道府県選択後に候補からエリア選択、またはエリアを入力" %></td>
+        </tr>
+        <tr>
+          <th>会場</th>
+          <td>    
+          <%= f.radio_button :place, "t" %> 確保している
+    　　    <%= f.radio_button :place, "f" %> 確保していない</td>
+        </tr>
+        <tr>
+          <th>定員</th>
+          <td>    
+          <%= f.number_field :capacity ,:id => "input_capacity", :type => "number", :name => "capacity", :value => "1" , :max => "1000" , :style => "width:70px;" , :placeholder => "半角数字", :min => "0" %></td>
+        </tr>
+        <tr>
+          <th>チーム</th>
+          <td>    
+          <%= f.select :team_id, :include_blank => true %></td>
+        </tr>
+        <tr>
+          <th>費用</th>
+          <td>    
+          <%= f.number_field :cost ,:id => "input_cost", :type => "number", :name => "cost", :placeholder => "半角数字", :min => "0" %></td>
+        </tr>
+        <tr>
+          <th>レベル</th>
+          <td><%= f.select :start_level, level_list %><span>〜</span>
+          <%= f.select :start_level, level_list %></td>
+        </tr>
+        <tr>
+          <th>年代</th>
+          <td><%= f.select :start_age, age_list %>
+          <span>〜</span>
+          <%= f.select :end_age, age_list %></td>
+        </tr>
+        <tr>
+          <th>タグ</th>
+          <td>    
+          <%= f.text_field :tag_name , :placeholder => "※１０個まで" %></td>
+        </tr>
+        <tr>
+          <th>写真</th>
+          <td>    
+          <%= f.file_field :image_name , :placeholder => "3枚まで" %></td>
+        </tr>
+      </tbody>
+    
+      </table>
+    
+      <%= f.submit "編集する", :class => "btn btn-primary" %>
+    <% end %>
+
+    </section>
+    
+  </div>

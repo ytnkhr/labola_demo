@@ -1,22 +1,21 @@
 class LikesController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
   
   def create
+    logger.debug("==================== user_id = #{current_user.id}... blog_id = #{params[:id]}")
     @like = Like.new(
-      user_id: @current_user.id,
-      blog_id: params[:blog_id]
+      user_id: current_user.id,
+      blog_id: params[:id]
       )
     @like.save
-    redirect_to("/blogs/#{params[:blog_id]}")
+    redirect_to("/blogs/#{params[:id]}")
   end
   
   def destroy
-    @like = Like.find_by(
-      user_id: @current_user.id,
-      blog_id: params[:blog_id]
-      )
+    @like = Like.find(params[:id])
+
     @like.destroy
-    redirect_to("/blogs/#{params[:blog_id]}")
+    redirect_to("/blogs/#{@like.blog_id}")
   end
   
 end

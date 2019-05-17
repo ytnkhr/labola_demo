@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'likes/create'
 
   devise_for :users, :controllers => {
   :registrations => 'users/registrations',
@@ -10,6 +9,10 @@ Rails.application.routes.draw do
   root 'home#top'
   resources :users, :only => [:show, :index]
   resources :blogs , :only => [:show, :index, :new, :create, :edit, :update, :destroy]
-  resources :likes , :only => [:create, :destroy]
+  resources :recruits , :only => [:show, :index, :new, :create, :edit, :update, :destroy]
+  resources :teams , :only => [:show, :index, :new, :create, :edit, :update, :destroy]
+  resources :messages, :only => [:create]
+  post "likes/:id/create" => "likes#create"
+  resources :likes , :only => [:destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

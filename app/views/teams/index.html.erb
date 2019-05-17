@@ -1,0 +1,36 @@
+<div id="content" class="w-normal clearfix">
+  
+  <div id="main">
+    <section>
+      <h3 class="page-title"><%= fa_icon 'home' %>あなたの所属チーム</h3>
+          <ul class="team-list clearfix">
+            <li>
+            <% @teams.each do |p| %>
+        
+            <li class="team">
+        
+              <h4><a href="/teams/<%= p.id %>"><%= p.name %></a></h4>
+              <div class="author"><a href="/users/<%= p.user_id %>"><%= User.find(p.user_id).name %></a>|<%= User.find(p.user_id).created_at %></div>
+            <ol class="sub">
+              
+            </ol>
+            </li>
+            <% end %>
+            </li>
+          </ul>
+    </section>
+
+    <section>
+  
+    <h4 class="hide_old">チームを探す</h4> 
+
+  
+    </section>
+  </div>
+
+    <aside id="side">
+      <section>
+    <a href="/teams/new" class="btn red medium">チームを登録する</a>
+      </section>
+    </aside>
+    

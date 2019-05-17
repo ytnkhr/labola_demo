@@ -1,0 +1,50 @@
+  <div id="content" class="w-normal clearfix">
+  
+    <section id="post" class="team">
+
+    <h1><%= fa_icon 'edit' %>募集情報を編集する</h1>
+
+    <%= form_for @team do |f| %>
+      <table>
+      <tbody>
+        <tr>
+          <th>チーム名</th>
+          <td class ="w100"><%= f.text_field :name , :class => "wide_input" %></td>
+        </tr>
+        <tr>
+          <th>活動エリア</th>
+          <td><%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, include_blank: '選択して下さい' %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td class ="w100"><%= f.text_field :erea, :placeholder => "都道府県選択後に候補からエリア選択、またはエリアを入力" %></td>
+        </tr>
+        <tr>
+          <th>競技</th>
+          <td><%= f.collection_select :sport_id, Sport.all, :id, :name, include_blank: '選択して下さい' %></td>
+        </tr>
+        <tr>
+          <th>レベル</th>
+          <td><%= f.select :start_level, level_list %><span>〜</span>
+          <%= f.select :start_level, level_list %></td>
+        </tr>
+        <tr>
+          <th>年代</th>
+          <td><%= f.select :start_age, age_list %>
+          <span>〜</span>
+          <%= f.select :end_age, age_list %></td>
+        </tr>
+        <tr>
+          <th>紹介文</th>
+          <td class ="w100"><%= f.text_area :introduction , :rows => "10", :placeholder => "10,000文字以内", :class => "wide_input" %></td>
+        </tr>
+      </tbody>
+    
+      </table>
+    
+      <%= f.submit "編集する", :class => "btn btn-primary" %>
+    <% end %>
+
+    </section>
+    
+  </div>
