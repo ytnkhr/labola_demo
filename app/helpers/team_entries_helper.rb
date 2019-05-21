@@ -1,0 +1,2 @@
+module TeamEntriesHelper
+end

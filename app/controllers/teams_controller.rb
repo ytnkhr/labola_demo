@@ -4,6 +4,7 @@ class TeamsController < ApplicationController
   def show
     @team = Team.find_by(id: params[:id])
     @user = @team.user
+    @team_entry = TeamEntry.new
   end
 
   def index
@@ -61,7 +62,7 @@ class TeamsController < ApplicationController
   
   private
     def teams_params
-    params.require(:team).permit(:user_id, :sports_name, :area, :prefecture_id, :start_level, :end_level, :start_age, :end_age).merge(:user_id => current_user.id)
+    params.require(:team).permit(:name, :user_id, :sports_id, :area, :prefecture_id, :start_level, :end_level, :start_age, :end_age, :introduction).merge(:user_id => current_user.id)
     end
   
     def team_params

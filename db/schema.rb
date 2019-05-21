@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190517012525) do
+ActiveRecord::Schema.define(version: 20190517092908) do
 
   create_table "blogs", force: :cascade do |t|
     t.string   "title"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20190517012525) do
     t.string   "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "comment"
   end
 
   create_table "teams", force: :cascade do |t|

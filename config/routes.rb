@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :blogs , :only => [:show, :index, :new, :create, :edit, :update, :destroy]
   resources :recruits , :only => [:show, :index, :new, :create, :edit, :update, :destroy]
   resources :teams , :only => [:show, :index, :new, :create, :edit, :update, :destroy]
+  resources :team_entries , :only => [:new, :create]
   resources :messages, :only => [:create]
   post "likes/:id/create" => "likes#create"
   resources :likes , :only => [:destroy]

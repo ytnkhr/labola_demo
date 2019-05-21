@@ -1,17 +1,26 @@
 
-  <h1>募集情報</h1>
+  <h1>チーム情報</h1>
   <hr>
-  <h4><%= @team.title %></h4>
+  <h4><%= @team.name %></h4>
   <br>
   <p><%= @user.name %>|<%= @team.created_at %></p>
-  <br>
-  <h4><%= @team.content %></h4>
   <br>
   <hr>
   <p><a href="/teams" class="btn btn-info">トップに戻る</a></p>
   <% if user_signed_in? %>
     <% if @team.user_id == current_user.id %>
-      <p><a href="/teams/<%= @team.id %>/edit" class="btn btn-success">募集情報を編集する</a></p>
+      <p><a href="/teams/<%= @team.id %>/edit" class="btn btn-success">チームを編集する</a></p>
       <p><a href="/teams/<%= @team.id %>" data-method="delete" class="btn btn-danger">募集情報を削除する</a></p>
+    <% else %>
+       <% if !team_entried(@team.id) %>
+         <%= form_for @team_entry do |f| %>
+            <p>コメント</p>
+            <%= f.text_area :comment, :class => "form-control my-form" %>
+            <br>
+            <%= f.submit "応募する", :class => "btn btn-success" %>
+          <% end %>
+      <% end %>
+      
+
     <% end %>
   <% end %>

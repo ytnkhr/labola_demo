@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :prefecture, optional: true
+  belongs_to :teams
+  belongs_to :team_entries
   
   # validates :name, {presence: true}
   def age
