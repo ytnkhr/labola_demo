@@ -1,0 +1,46 @@
+<br>
+<div class="row">
+  <div class="col-xs-3 text-center">
+    <h4><%= @receiver.name %></h4>
+    <hr>
+    <% @chats.each do |c| %>
+    <% end %>
+  </div>
+  <div class="col-xs-9">
+      <% if @chats.present? %>
+      <% @chats.each do |c| %>
+        <% if c.sender_id == current_user.id %>
+          <h4 class="text-right">
+          <p class="alert alert-success">
+          <%= c.content %>
+          <br><br>
+          <small><strong><a href="/users/<%= @sender_id %>"><%= @sender.name %></a></strong></small>
+          </p>
+          </h4>
+        <% else %>
+          <h4 class="text-left">
+          <p class="alert alert-info">
+          <%= c.content %>
+          <br><br>
+          <small><strong><a href="/users/<%= @receiver_id %>"><%= @receiver.name %></a></strong></small>
+          </p>
+          </h4>
+        <% end %>
+      <% end %>
+    <% else %>
+      <br>
+      <h3 class="text-center">メッセージはまだありません</h3>
+      <br>
+    <% end %>
+    <hr>
+    <%= form_for @chat do |f| %>
+      <%= f.text_field :content, :class => "form-control myform", :placeholder => "メッセージを入力して下さい" %>
+      <%= f.hidden_field :receiver_id, :value => @receiver_id %>
+      <br>
+      <div class="text-center">
+        <%= f.submit "投稿する", :class => "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

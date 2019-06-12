@@ -1,22 +1,17 @@
 <div id="content" class="w-normal clearfix">
   
-  <div id="main">
+  <div id="main" class="col-lg-8">
     <section>
       <h3 class="page-title"><%= fa_icon 'home' %>あなたの所属チーム</h3>
           <ul class="team-list clearfix">
-            <li>
+
             <% @teams.each do |p| %>
-        
-            <li class="team">
-        
-              <h4><a href="/teams/<%= p.id %>"><%= p.name %></a></h4>
-              <div class="author"><a href="/users/<%= p.user_id %>"><%= User.find(p.user_id).name %></a>|<%= User.find(p.user_id).created_at %></div>
-            <ol class="sub">
-              
-            </ol>
+            <li>
+              <div class="text"><h3 class="title"><a href="/teams/<%= p.id %>"><%= p.name %></a></h3></div>
+              <div class="sub"><a href="/users/<%= p.user_id %>"><%= User.find(p.user_id).name %></a>|<%= User.find(p.user_id).created_at %></div>
             </li>
             <% end %>
-            </li>
+
           </ul>
     </section>
 
@@ -28,9 +23,9 @@
     </section>
   </div>
 
-    <aside id="side">
+    <div id="right" class="col-lg-4">
       <section>
     <a href="/teams/new" class="btn red medium">チームを登録する</a>
       </section>
-    </aside>
+    </div>
     

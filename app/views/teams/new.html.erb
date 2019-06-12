@@ -25,7 +25,7 @@
         <tr>
           <th>レベル</th>
           <td><%= f.select :start_level, level_list %><span>〜</span>
-          <%= f.select :start_level, level_list %></td>
+          <%= f.select :end_level, level_list %></td>
         </tr>
         <tr>
           <th>年代</th>
@@ -37,10 +37,16 @@
           <th>紹介文</th>
           <td class ="w100"><%= f.text_area :introduction , :rows => "10", :placeholder => "10,000文字以内", :class => "wide_input" %></td>
         </tr>
+        
+        <tr>
+          <th>チーム写真</th>
+          <td class ="w100"><%= f.file_field :team_icon , :placeholder => "写真を選択", autocomplete: "img" %></td>
+        </tr>
+
       </tbody>
     
       </table>
-    
+    <br>
       <%= f.submit "作成する", :class => "btn btn-primary" %>
     <% end %>
 

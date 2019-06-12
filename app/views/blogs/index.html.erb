@@ -1,8 +1,47 @@
-<h1>投稿一覧</h1>
-<hr>
-<% @blogs.each do |p| %>
-  <h3><a href="/blogs/<%= p.id %>"><%= p.title %></a></h3>
-  <p><a href="/users/<%= p.user_id %>"><%= User.find(p.user_id).name %></a>|<%= User.find(p.user_id).created_at %></p>
-  <hr>
-<% end %>
-<a href="/blogs/new" class="btn btn-primary">新しく投稿する</a>
+<br>
+<div id="row">
+  <div id="left" class="col-lg-2">
+    <section>
+      <h2 class="page-title">カテゴリ</h2>
+
+    <div id="more-text">
+      <div class="text" style="max-height:296px;">
+        <ul class="text-count description">
+          <% @sports.each do |s| %>
+            <li><a href="<% s.id %>"><%= s.name %></a></li>
+          <% end %>
+        </ul>
+      </div>
+    <div id="more_btn">もっと見る <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+
+    </section>
+
+    </div>
+
+    
+  <div id="center" class="col-lg-8">
+    <section>
+      <h4>ブログ一覧</h4>
+      <ul class="photo-list">
+        <li class="blog">
+          <div class="text">
+            <% @blogs.each do |p| %>
+            <h3 class="title"><a href="/blogs/<%= p.id %>"><%= p.title %></a></h3>
+            <p><a href="/users/<%= p.user_id %>"><%= User.find(p.user_id).name %></a>|<%= User.find(p.user_id).created_at %></p>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+
+    </section>
+
+
+  </div>
+
+</div>
+
+<div id="right" class="col-lg-2">
+  <section>
+    <a href="/blogs/new" class="btn btn-primary">新しく投稿する</a>
+  </section>
+</div>

@@ -65,3 +65,5 @@ gem 'font-awesome-sass', '5.3.1'
 
 gem 'seed-fu'
 gem 'rails-i18n', '~> 5.1'
+
+gem 'rmagick'

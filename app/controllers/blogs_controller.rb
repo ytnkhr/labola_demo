@@ -9,6 +9,7 @@ class BlogsController < ApplicationController
 
   def index
     @blogs = Blog.all
+    @sports = Sport.all
   end
 
   def new

@@ -11,101 +11,10 @@
       <div id="more-text">
         <div class="text" style="max-height:296px;">
           <ul class="text-count description">
-            <li><a href="/soccer">サッカー</a></li>
-            <li><a href="/futsal">フットサル</a></li>
-            <li><a href="/baseball">野球</a></li>
-          
-            <li><a href="/softball">ソフトボール</a></li>
-          
-            <li><a href="/golf">ゴルフ</a></li>
-          
-            <li><a href="/tennis">テニス</a></li>
-          
-            <li><a href="/basketball">バスケットボール</a></li>
-          
-            <li><a href="/rugby">ラグビー</a></li>
-          
-            <li><a href="/volleyball">バレーボール</a></li>
-          
-            <li><a href="/amefoot">アメリカンフットボール</a></li>
-          
-            <li><a href="/badminton">バドミントン</a></li>
-          
-            <li><a href="/handball">ハンドボール</a></li>
-          
-            <li><a href="/pingpong">卓球</a></li>
-          
-            <li><a href="/cricket">クリケット</a></li>
-          
-            <li><a href="/lacrosse">ラクロス</a></li>
-          
-            <li><a href="/dodgeball">ドッジボール</a></li>
-          
-            <li><a href="/gateball">ゲートボール</a></li>
-          
-            <li><a href="/bowling">ボウリング</a></li>
-          
-            <li><a href="/squash">スカッシュ</a></li>
-          
-            <li><a href="/billiard">ビリヤード</a></li>
-          
-            <li><a href="/jog">ランニング・マラソン</a></li>
-          
-            <li><a href="/athletic">陸上</a></li>
-          
-            <li><a href="/swimming">水泳</a></li>
-          
-            <li><a href="/fitness">フィットネス</a></li>
-          
-            <li><a href="/yoga">ヨガ</a></li>
-          
-            <li><a href="/gymnastics">体操</a></li>
-          
-            <li><a href="/dance">ダンス</a></li>
-          
-            <li><a href="/cycling">サイクリング</a></li>
-          
-            <li><a href="/shooting">射撃</a></li>
-          
-            <li><a href="/darts">ダーツ</a></li>
-          
-            <li><a href="/ski">スキー</a></li>
-          
-            <li><a href="/snowboard">スノーボード</a></li>
-          
-            <li><a href="/figure">フィギュアスケート</a></li>
-          
-            <li><a href="/icehockey">アイスホッケー</a></li>
-          
-            <li><a href="/sumo">相撲</a></li>
-          
-            <li><a href="/judo">柔道</a></li>
-          
-            <li><a href="/kendo">剣道</a></li>
-          
-            <li><a href="/karate">空手</a></li>
-          
-            <li><a href="/boxing">ボクシング</a></li>
-          
-            <li><a href="/fencing">フェンシング</a></li>
-          
-            <li><a href="/muaythai">ムエタイ</a></li>
-          
-            <li><a href="/wrestling">レスリング</a></li>
-          
-            <li><a href="/martialarts">総合格闘技</a></li>
-          
-            <li><a href="/taekwondo">テコンドー</a></li>
-          
-            <li><a href="/motorsports">モータースポーツ</a></li>
-          
-            <li><a href="/f1">F1</a></li>
-          
-            <li><a href="/outdoor">アウトドアスポーツ</a></li>
-          
-            <li><a href="/surfing">サーフィン</a></li>
-    
-          </ul>
+            <% @sports.each do |s| %>
+              <li><a href="<% s.id %>"><%= s.name %></a></li>
+            <% end %>
+           </ul>
         </div>
   <div id="more_btn">もっと見る <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 

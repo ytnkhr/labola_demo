@@ -6,6 +6,10 @@ class User < ApplicationRecord
   belongs_to :prefecture, optional: true
   belongs_to :teams
   belongs_to :team_entries
+  belongs_to :messages
+  belongs_to :chats
+  
+  mount_uploader :icon_name, ImageUploader
   
   # validates :name, {presence: true}
   def age

@@ -1,7 +1,20 @@
-<h1>ユーザー一覧</h1>
-<hr>
-<% @users.each do |u| %>
-  <p><a href="/users/<%= u.id %>"><%= u.name %></a></p>
+  <h3 class="users-heading">ユーザー一覧</h3>
   <hr>
-<% end %>
-<a href="/" class="btn btn-info">トップに戻る</a>
+  <% @users.each do |u| %>
+    <div class="users-index-item">
+      <div class="user-left">
+        <% if u.icon_name? %>
+          <%= image_tag u.icon_name.to_s, class: 'mypage-user-img' %>
+        <% else %>
+          <%= image_tag 'no_image.jpg', class: 'mypage-user-img' %>
+        <% end %>
+      </div>
+      <div class="user-right">
+        <%= link_to(u.name, "/users/#{u.id}") %>
+      </div>
+    </div>
+  <% end %>
+
+  <br>
+  
+  <a href="/" class="btn btn-info">トップに戻る</a>
